@@ -15,6 +15,7 @@ This Github repo contains the weekly labs completed as part of the Programming f
 - Week 07
     - *lab_07_1.ipynb*
     - *lab_07_2.ipynb*
+    - *access.py* (separate python file with access file analysis)
 
 
 **Note:** There are no labs for Week 2, 3, 
