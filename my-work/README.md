@@ -12,6 +12,9 @@ This Github repo contains the weekly labs completed as part of the Programming f
     - *lab01_task06.py*
 - Week 04 
     - *lab_04.ipynb*
+- Week 07
+    - *lab_07_1.ipynb*
+    - *lab_07_2.ipynb*
 
 
 **Note:** There are no labs for Week 2, 3, 

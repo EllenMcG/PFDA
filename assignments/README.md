@@ -10,7 +10,7 @@ This Github repo contains the assignment completed as part of the Programming fo
 > - **Assignment 2 - Plotting** - create a Jupyter Notebook called *assignment2-weather.ipynb* that plots temperature (*dryBulbTemperature_Celsius*) using the *weatherreadings1.csv* file located on lecturers Github [page](https://github.com/andrewbeattycourseware/PFDA-courseware). 
 > - **Assignment 3 - Domains** - Create a notebook called *assignment03-pie.ipynb*. The note book should have a nice pie chart of peoples email domains in the csv file at the [URL](https://drive.google.com/uc?id=1AWPf-pJodJKeHsARQK_RHiNsE8fjPCVK&export=download). 
 > - **Assignment 5 - Risk** - Write a program called *assignment_5_risk* (.py or .ipynb). The program should simulates 1000 individual battle rounds in Risk (3 attacker vs 2 defender) and plots the result. One battle round is one shake of the attacker and defender dice.
-
+> - **Assignment 6 - Weather** - Write a program called *assignment_6_Weather* (.py or .ipynb) and plot weather data in Knock from this [data source](https://cli.fusio.net/cli/climate_data/webdata/hly4935.csv)
 
 **Note:** There is no Assignment 04, 
 
