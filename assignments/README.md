@@ -8,7 +8,7 @@ This Github repo contains the assignment completed as part of the Programming fo
    - `project` (for the project work created as part of this module)
    - `my-work` (for labs done as part of this module)
 
-This sturcutre is shown below 
+This structure is shown below 
 
 ![repo structure](img/repo_structure.png) 
 
