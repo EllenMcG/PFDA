@@ -4,7 +4,7 @@ This Github repo contains the assignment completed as part of the Programming fo
 
 ## **Assignments**
 - **Assignment 1 - repo** - Create a repo (PFDA) for this module (Programming for Data Analytics) that contains three folders
-   - `assignments` (for asignments created as part of this module)
+   - `assignments` (for assignments  created as part of this module)
    - `project` (for the project work created as part of this module)
    - `my-work` (for labs done as part of this module)
 
@@ -16,7 +16,7 @@ This structure is shown below
 
 - **Assignment 3 - Domains** - Create a notebook called *assignment_3_pie.ipynb*. The note book should have a nice pie chart of peoples email domains in the csv file at the [URL](https://drive.google.com/uc?id=1AWPf-pJodJKeHsARQK_RHiNsE8fjPCVK&export=download). 
 
-- **Assignment 5 - Risk** - Write a program called *assignment_5_risk* (.py or .ipynb). The program should simulates 1000 individual battle rounds in Risk (3 attacker vs 2 defender) and plots the result. One battle round is one shake of the attacker and defender dice.
+- **Assignment 5 - Risk** - Write a program called *assignment_5_risk* (.py or .ipynb). The program should simulate 1000 individual battle rounds in Risk (3 attacker vs 2 defender) and plots the result. One battle round is one shake of the attacker and defender dice.
 
  - **Assignment 6 - Weather** - Write a program called *assignment_6_Weather* (.py or .ipynb) and plot weather data in Knock from this [data source](https://cli.fusio.net/cli/climate_data/webdata/hly4935.csv)
 
@@ -32,7 +32,7 @@ This structure is shown below
 - *README.md*
 - *requirements.tt*
 
-There is also an `img` directory. 
+There is also an `img` directory used for containing the images used in various Jupyter Notebooks. 
 
 ## **Running this repository**
 This repo can be run in two ways;
@@ -68,7 +68,7 @@ An alternative way to install dependencies not using the `requirements.txt` file
 $ pip install matplotlib.pyplot pandas random numpy seaborn
 ```
 
-### **Running this repositry on Github Codespaces**
+### **Running this repository on Github Codespaces**
 
 GitHub Codespaces is an online IDE that allows you to run your project in a cloud-based environment without needing to set up anything on your local machine. Here's how to get started:
 
