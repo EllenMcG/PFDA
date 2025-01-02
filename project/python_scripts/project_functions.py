@@ -53,47 +53,44 @@ def add_month_and_season(df):
     
     return df
 
+
 def add_year_and_decade(df):
-    # Extract the month from the date in the index and add a new column 'month'
-    df['year'] = df.index.strftime('%Y')
-    # df['year'] = df.index.year.astype(str)
+    '''
+    Extract the year from the date in the index and add a new column 'year' to the dataframe.
+    Using this year column, create a new column 'decade' that groups the years into decades.
+
+    Ags:
+        df: pd.DataFrame, dataframe containing a datetime index
+
+    Returns:
+        pd.DataFrame, dataframe with new columns 'year' and 'decade'
+    '''
+
+    df['year'] = df.index.year #. strftime('%Y') could hbave been used, year is already an integer so no need to 
+    # convert to string and then back to integer
+
+    df['decade'] = ((df['year'] // 10) * 10).astype(str) + 's'
+    return df
+
+
+def calculate_power(windspeed_knots):
+    ''''
+    Function to calculate the power (P in watts) generated using the windspeed (wdsp in kt) of the dataframe. As the windspeed is measured in knots, 
+    the formula used to calculate the power needs to convert the windspeed to m/s. The formula used to calculate the power generated 
+    is P = 0.5 * rho * A * Cp * V^3, where rho is the air density in kilograms per cubic meter (1.225 kg/m^3), A is the swept area in 
+    square meters (assumed to be 1 m^2), Cp is the power coefficient (assumed to be 0.4), and V is the windspeed in m/s.
     
-    # Define a function to map months to seasons
-    # def get_decade(year):
-    #     if year in ['1956', '1957', '1958', '1959']:
-    #         return '1950s'
-    #     elif year in ['1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969']:
-    #         return '1960s'
-    #     elif year in ['1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979']:
-    #         return '1970s'
-    #     elif year in ['1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989']:
-    #         return '1980s'
-    #     elif year in ['1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999']:
-    #         return '1990s'
-    #     elif year in ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009']:
-    #         return '2000s'
-    #     elif year in ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']:
-    #         return '2010s'
-    #     elif year in ['2020', '2021', '2022', '2023', '2024', '2025']:
-    #         return '2020s'
-        
-    def get_decade(year):
-        if year in [1956, 1957, 1958, 1959]:
-            return '1950s'
-        elif year in [1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969]:
-            return '1960s'
-        elif year in [1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979]:
-            return '1970s'
-        elif year in [1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989]:
-            return '1980s'
-        elif year in [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]:
-            return '1990s'
-        elif year in [200, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009]:
-            return '2000s'
-        elif year in [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]:
-            return '2010s'
-        elif year in [2020, 2021, 2022, 2023, 2024]:
-            return '2020s'
-    
-    # Apply the function to create the 'season' column
-    df['decade'] = df['year'].apply(get_decade)
+    Args:
+        windspeed_knots: float, windspeed in knots
+
+    Returns:
+        float, power generated in watts
+    '''
+
+    # Conversion factor from knots to m/s (1 knot = 0.514444 m/s)
+    windspeed_mps = windspeed_knots * 0.514444
+    rho = 1.225
+    A = 1
+    Cp = 0.4
+    power = 0.5 * rho * A * Cp * windspeed_mps**3
+    return power
