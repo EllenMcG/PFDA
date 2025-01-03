@@ -3,6 +3,8 @@
 
 import zipfile
 import pandas as pd
+import re 
+from datetime import datetime
 
 def extract_zip(zip_file, extract_dir):
     '''
@@ -33,9 +35,47 @@ def capitalize_month(date_str):
 
     return pd.to_datetime(date_str, format='%d-%b-%Y %H:%M').strftime('%d-%b-%Y %H:%M')
 
+# def add_month_and_season(df):
+#     # Extract the month from the date in the index and add a new column 'month'
+#     df['month'] = df.index.strftime('%b')
+    
+#     # Define a function to map months to seasons
+#     def get_season(month):
+#         if month in ['Dec', 'Jan', 'Feb']:
+#             return 'Winter'
+#         elif month in ['Mar', 'Apr', 'May']:
+#             return 'Spring'
+#         elif month in ['Jun', 'Jul', 'Aug']:
+#             return 'Summer'
+#         elif month in ['Sep', 'Oct', 'Nov']:
+#             return 'Autumn'
+    
+#     # Apply the function to create the 'season' column
+#     df['season'] = df['month'].apply(get_season)
+    
+#     return df
+
+
+def extract_month(date_str):
+    '''
+    Extracts the three-letter month from a date string.
+
+    Args:
+        date_str: str, date string in the format 'dd-MMM-yyyy'
+
+    Returns:
+        str, the three-letter month
+    '''
+    # Regular expression to match the three-letter month
+    match = re.search(r'-([A-Za-z]{3})-', date_str)
+    if match:
+        return match.group(1)
+    else:
+        return None
+
 def add_month_and_season(df):
-    # Extract the month from the date in the index and add a new column 'month'
-    df['month'] = df.index.strftime('%b')
+    # Extract the month from the date column and add a new column 'month'
+    df['month'] = df['date'].apply(extract_month)
     
     # Define a function to map months to seasons
     def get_season(month):
@@ -53,25 +93,98 @@ def add_month_and_season(df):
     
     return df
 
+def extract_year(date_str):
+    '''
+    Extracts the year from a date string.
+
+    Args:
+        date_str: str, date string in the format 'dd-MMM-yyyy HH:MM'
+
+    Returns:
+        int, the year
+    '''
+    # Parse the date string to a datetime object
+    date_obj = datetime.strptime(date_str, '%d-%b-%Y %H:%M')
+    # Extract the year from the datetime object
+    return date_obj.year
 
 def add_year_and_decade(df):
     '''
-    Extract the year from the date in the index and add a new column 'year' to the dataframe.
+    Extract the year from the date column and add a new column 'year' to the dataframe.
     Using this year column, create a new column 'decade' that groups the years into decades.
 
-    Ags:
-        df: pd.DataFrame, dataframe containing a datetime index
+    Args:
+        df: pd.DataFrame, dataframe containing a date column
 
     Returns:
         pd.DataFrame, dataframe with new columns 'year' and 'decade'
     '''
-
-    df['year'] = df.index.year #. strftime('%Y') could hbave been used, year is already an integer so no need to 
-    # convert to string and then back to integer
-
-    df['decade'] = ((df['year'] // 10) * 10).astype(str) + 's'
+    # Extract the year from the date column and add a new column 'year'
+    df['year'] = df['date'].apply(extract_year)
+    
+    # Create the 'decade' column by grouping the years into decades
+    df['decade'] = (df['year'] // 10) * 10
+    df['decade'] = df['decade'].astype(str) + 's'
+    
     return df
 
+
+
+# def add_year_and_decade(df):
+#     '''
+#     Extract the year from the date in the index and add a new column 'year' to the dataframe.
+#     Using this year column, create a new column 'decade' that groups the years into decades.
+
+#     Ags:
+#         df: pd.DataFrame, dataframe containing a datetime index
+
+#     Returns:
+#         pd.DataFrame, dataframe with new columns 'year' and 'decade'
+#     '''
+
+#     df['year'] = df.index.year #. strftime('%Y') could hbave been used, year is already an integer so no need to 
+#     # convert to string and then back to integer
+
+#     df['decade'] = ((df['year'] // 10) * 10).astype(str) + 's'
+#     return df
+
+# def extract_year(date_str):
+#     '''
+#     Extracts the year from a date string.
+
+#     Args:
+#         date_str: str, date string in the format 'dd-MMM-yyyy HH:MM'
+
+#     Returns:
+#         int, the year
+#     '''
+#     # Regular expression to match the year
+#     match = re.search(r'(\d{4})', date_str)
+#     if match:
+#         return int(match.group(1))
+#     else:
+#         return None
+
+# def add_year_and_decade(df):
+#     '''
+#     Extract the year from the date column and add a new column 'year' to the dataframe.
+#     Using this year column, create a new column 'decade' that groups the years into decades.
+
+#     Args:
+#         df: pd.DataFrame, dataframe containing a date column
+
+#     Returns:
+#         pd.DataFrame, dataframe with new columns 'year' and 'decade'
+#     '''
+#     # Extract the year from the date column and add a new column 'year'
+#     df['year'] = df['date'].apply(extract_year)
+    
+#     # Create the 'decade' column by grouping the years into decades
+#     df['decade'] = ((df['year'] // 10) * 10).astype(str) + 's'
+#     # df['decade'] = df['year'].apply(lambda x: (x // 10) * 10 if x is not None else None).astype(str) + 's'
+    
+
+#     return df
 
 def calculate_power(windspeed_knots):
     ''''

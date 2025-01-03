@@ -49,6 +49,9 @@ Some papers were read in prepreparation for this project in terms of data analyt
 ## **Development and Environment**
 Both the tasks and projected were completed in [`Visual Studio Code`](https://code.visualstudio.com/) using python (V3.11) though [`Anaconda`](https://www.anaconda.com/). [ChatGPT](https://chatgpt.com/) was used to assist with writing the workflow file for the project. No additional python modules needed as this was done using modules available within Anaconda, however the `requirements.txt` file shows the python modules used as part of this assessment.
 
+### Python Code 
+To make the python code more efficient, some functions were transferred to a specific python class within the  `data_processing.py` script. On the other hand more generic ones were left within `project_functions.py`. 
+
 ## **Repository structure** 
 This repository has the below structure. `project` is a subdirectory of `PFDA`. 
 
@@ -60,7 +63,9 @@ This repository has the below structure. `project` is a subdirectory of `PFDA`.
 │   ├── /XX/                    # plots generated in project.ipynb
 │   └── /XX/                    # weather files generated in project.ipynb
 ├── /python_scripts/            # directory of python scripts
-│   ├── project_functions.py    # Main python file for functions used              
+│   ├── project_functions.py    # Main python file for functions used     
+│   ├── data_processing.py      # python script with data processing classes 
+│   ├── log_reg_test.py         # python script to test BinaryLogisticRegression class object            
 │   └── requirements.py         # python script to print module name and version to requirements.txt
 ├── .gitignore                  # .gitignore file
 ├── README.md                   # README.md file 
