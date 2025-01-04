@@ -81,6 +81,70 @@ class DataProcessor:
             summary statistics for the dataframe
         '''
         return self.df.describe()
+    
+    def convert_to_float(self, column_name):
+        '''
+        Converts a dataframe column to float type.
+        
+        Args:
+            column_name: name of the column to convert
+
+        Returns:
+            converts the specified column to float type (no return value)
+        '''
+        self.df[column_name] = self.df[column_name].astype(float)
+    
+    def convert_to_int(self, column_name):
+        '''
+        Converts a dataframe column to int type.
+        
+        Args:
+            column_name: name of the column to convert
+
+        Returns:
+            converts the specified column to int type (no return value)
+        '''
+        self.df[column_name] = self.df[column_name].astype(int)
+
+    # def remove_rows_with_whitespace(self, columns):
+    #     '''
+    #     Removes rows that contain whitespace in any of the specified columns.
+        
+    #     Args:
+    #         columns: list of column names to check for whitespace
+
+    #     Returns:
+    #         removes rows with whitespace in the specified columns (no return value)
+    #     '''
+    #     for column in columns:
+    #         self.df = self.df[~self.df[column].str.contains(' ', na=False)]
+
+    def remove_rows_with_whitespace(self, columns):
+        '''
+        Removes rows that contain whitespace in any column of the dataframe.
+        
+        Returns:
+            removes rows with whitespace in any column (no return value)
+        '''
+        #self.df = self.df[~self.df.apply(lambda row: row.astype(str).str.contains(' ').any(), axis=1)]
+        # self.df = self.df[~self.df.apply(lambda row: row.astype(str).str.contains(r' ').any(), axis=1)]
+    
+        for column in columns:
+            self.df = self.df[~self.df[column].str.contains(r'\s', na=False)]
+
+    def remove_rows_with_whitespace_or_nan(self, columns):
+        '''
+        Removes rows that contain whitespace or NaN in any of the specified columns of the dataframe.
+    
+        Args:
+            columns (list): List of column names to check for whitespace or NaN.
+    
+        Returns:
+            None
+        '''
+        for column in columns:
+            self.df = self.df[~self.df[column].astype(str).str.startswith(' ')]
+            self.df = self.df.dropna(subset=[column])
 
 class BinaryLogisticRegression:
     '''

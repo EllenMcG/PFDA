@@ -70,7 +70,7 @@ This repository has the below structure. `project` is a subdirectory of `PFDA`.
 ├── .gitignore                  # .gitignore file
 ├── README.md                   # README.md file 
 ├── requirements.txt            # python dependencies
-└── project.ipynb               # main Jupyter Notebook of this module 
+└── project.ipynb               # main Jupyter Notebook of this project
 ```
 
 
