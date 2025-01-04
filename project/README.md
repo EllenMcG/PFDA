@@ -49,6 +49,18 @@ Some papers were read in prepreparation for this project in terms of data analyt
 ## **Development and Environment**
 Both the tasks and projected were completed in [`Visual Studio Code`](https://code.visualstudio.com/) using python (V3.11) though [`Anaconda`](https://www.anaconda.com/). [ChatGPT](https://chatgpt.com/) was used to assist with writing the workflow file for the project. No additional python modules needed as this was done using modules available within Anaconda, however the `requirements.txt` file shows the python modules used as part of this assessment.
 
+During some plotting tasks, VS Code kept crashing when some additional plots were done with `plotly.express` and the Jupyter Notebook became unresponsive with the below message. 
+
+![error message](img/vs_studio_crashing.png)
+
+Searching online found this erratic behaviour in VS Code from `plotly.express` may have caused the [error](https://community.plotly.com/t/plotly-not-working-in-vscode-jupyter/85950). 
+
+A few searches found a way to fix this error was to remove metadata from the previous run of the Jupyter Notebook located [here](https://stackoverflow.com/questions/72232152/visual-studio-code-freezes-after-short-while-the-window-is-not-responding). With the directory to the `project` folder the following command was used in the terminal using `bpstripout`. After a computer restart this worked. `plotly.express` wasn't used for other testing. 
+
+```bash
+nbsptripout project.ipynb
+```
+
 ### Python Code 
 To make the python code more efficient, some functions were transferred to a specific python class within the  `data_processing.py` script. On the other hand more generic ones were left within `project_functions.py`. 
 
@@ -125,6 +137,7 @@ Once your Codespace is ready:
 - Open the integrated terminal in GitHub Codespaces.
 - Make sure your virtual environment is activated (if you're using one). If not, you can skip this step.
 - Open `project.ipynb` in `Visual Studio Code` and run 
+
 
 ### **References**
 [Murphy et al., 2023](https://www.sciencedirect.com/science/article/pii/S2212094723000610)

@@ -153,7 +153,7 @@ class BinaryLogisticRegression:
     def __init__(self, dataframe, target_column):
         self.df = dataframe
         self.target_column = target_column
-        self.model = LogisticRegression()
+        self.model = LogisticRegression(solver='lbfgs', max_iter=1000)
 
     def preprocess_data(self):
         '''
@@ -219,3 +219,21 @@ class BinaryLogisticRegression:
         print(f'Confusion Matrix:\n{conf_matrix}')
         print(f'Classification Report:\n{class_report}')
     
+
+    def print_model_summary(self):
+        '''
+        Prints the summary of the logistic regression model including coefficients and intercepts.
+        
+        Args:
+            None
+
+        Returns:
+            Prints the model summary (no return value)
+        '''
+        # print(f'Model Intercept:{self.model.intercept_}')
+        # print(f'Model Coefficients:\n{self.model.coef_}')
+        print("Model Coefficients:")
+        for feature, coef in zip(self.df.drop(self.target_column, axis=1).columns, self.model.coef_[0]):
+            print(f'{feature}: {coef}')
+        print("Model Intercept:")
+        print(self.model.intercept_)
