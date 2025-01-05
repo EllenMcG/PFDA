@@ -49,6 +49,19 @@ Some papers were read in prepreparation for this project in terms of data analyt
 ## **Development and Environment**
 Both the tasks and projected were completed in [`Visual Studio Code`](https://code.visualstudio.com/) using python (V3.11) though [`Anaconda`](https://www.anaconda.com/). [ChatGPT](https://chatgpt.com/) was used to assist with writing the workflow file for the project. No additional python modules needed as this was done using modules available within Anaconda, however the `requirements.txt` file shows the python modules used as part of this assessment.
 
+**Note:** The python modules `os`, `datetime`, and `zipfile` are not included within `requirments.txt` as they are modules that come with a standalong installation of python (V 3.11) or through a python package manager (`Anaconda`). The python package requirements are below;
+
+```python
+re==2.2.1
+pandas==2.2.2
+numpy==1.26.4
+matplotlib==3.9.2
+pmdarima==2.0.4
+statsmodels==0.14.2
+seaborn==0.13.2
+sklearn==1.5.1
+```
+
 During some plotting tasks, VS Code kept crashing when some additional plots were done with `plotly.express` and the Jupyter Notebook became unresponsive with the below message. 
 
 ![error message](img/vs_studio_crashing.png)
@@ -102,7 +115,7 @@ $ git clone https://github.com/EllenMcG/computer_infrastructure_assessment.git
 
 2. Change to `project` subdirectory from repositroy root (`PFDA`)
 
-```
+```bash
 cd .\project\
 ```
 

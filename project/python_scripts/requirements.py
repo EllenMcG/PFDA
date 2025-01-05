@@ -7,13 +7,13 @@ import re
 import pandas
 import numpy
 import matplotlib
+import pmdarima
+import statsmodels
 import os
-import requests
-import tensorflow
 import seaborn
+import sklearn
 
-
-# zipfile and os not included as included in base installation of python
+# zipfile, datetime and os not included as included in base installation of python
 # os module is used use to get the project directory, but it is not included in the 
 # requirements.txt file
 
