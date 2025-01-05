@@ -106,18 +106,6 @@ class DataProcessor:
         '''
         self.df[column_name] = self.df[column_name].astype(int)
 
-    # def remove_rows_with_whitespace(self, columns):
-    #     '''
-    #     Removes rows that contain whitespace in any of the specified columns.
-        
-    #     Args:
-    #         columns: list of column names to check for whitespace
-
-    #     Returns:
-    #         removes rows with whitespace in the specified columns (no return value)
-    #     '''
-    #     for column in columns:
-    #         self.df = self.df[~self.df[column].str.contains(' ', na=False)]
 
     def remove_rows_with_whitespace(self, columns):
         '''

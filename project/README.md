@@ -4,8 +4,11 @@ This Github repo contains the project work completed as part of the Programming 
 
 ## Project Goal 
 This project will focus on pulling from [Met Éireann](https://www.met.ie/) for analysis. The main objectives of this project will be to 
-- Calculate average monthly rain per decade 
-- Estimate daily power output 
+- Review average temperature per decade. 
+- Estimate daily power output and est total days above threshold.
+- Investigate past weather events.
+- Use logistic regression to predict dry/wet days/hours.
+- Investigate if an ARIMA model can be used for forecasting
 
 ## The Dataset
 Data was downloaded from the Historical web page for the weather station in Belmullet (shown below).
@@ -49,7 +52,7 @@ Some papers were read in prepreparation for this project in terms of data analyt
 ## **Development and Environment**
 Both the tasks and projected were completed in [`Visual Studio Code`](https://code.visualstudio.com/) using python (V3.11) though [`Anaconda`](https://www.anaconda.com/). [ChatGPT](https://chatgpt.com/) was used to assist with writing the workflow file for the project. No additional python modules needed as this was done using modules available within Anaconda, however the `requirements.txt` file shows the python modules used as part of this assessment.
 
-**Note:** The python modules `os`, `datetime`, and `zipfile` are not included within `requirments.txt` as they are modules that come with a standalong installation of python (V 3.11) or through a python package manager (`Anaconda`). The python package requirements are below;
+**Note:** The python modules `os`, `datetime`, and `zipfile` are not included within `requirments.txt` as they are modules that come with a standalong installation of python (Python 3.11.9) or through a python package manager (`Anaconda`) (using Python 3.11.9). The python package requirements are below;
 
 ```python
 re==2.2.1
@@ -74,8 +77,8 @@ A few searches found a way to fix this error was to remove metadata from the pre
 nbsptripout project.ipynb
 ```
 
-### Python Code 
-To make the python code more efficient, some functions were transferred to a specific python class within the  `data_processing.py` script. On the other hand more generic ones were left within `project_functions.py`. 
+### **Python Code** 
+To make the python code more efficient, some functions were transferred to a specific python class within the `data_processing.py` script. On the other hand more generic ones were left within `project_functions.py`. 
 
 ## **Repository structure** 
 This repository has the below structure. `project` is a subdirectory of `PFDA`. 
@@ -95,6 +98,7 @@ This repository has the below structure. `project` is a subdirectory of `PFDA`.
 ├── .gitignore                  # .gitignore file
 ├── README.md                   # README.md file 
 ├── requirements.txt            # python dependencies
+├── research.ipynb              # additional Jupyter Notebook for showing whitespace in pd.Dataframe
 └── project.ipynb               # main Jupyter Notebook of this project
 ```
 
