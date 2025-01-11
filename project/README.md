@@ -8,14 +8,14 @@ This project will focus on pulling from [Met Éireann](https://www.met.ie/) for 
 - Estimate daily power output and est total days above threshold.
 - Investigate past weather events.
 - Use logistic regression to predict dry/wet days/hours.
-- Investigate if an ARIMA model can be used for forecasting
+- Investigate if an ARIMA model can be used for forecasting (and compare to  actual data)
 
 ## The Dataset
-Data was downloaded from the Historical web page for the weather station in Belmullet (shown below).
+Data was downloaded from the Historical web page for the weather station in Belmullet (Belmullet weather station shown below).
 
 ![Belmullet weather station](https://www.met.ie/cms/assets/uploads/2021/03/Belmullet-weather-station.png)
 
-Belmullet weather station (9 masl, 54°13‘39” N, 10°00’25’’ W) opened in September 1956. It replaced the station at Blacksod Lighthouse, 10 miles to the SW, which was run by the Sweeney family. It was from Blacksod that the observation, which finally determined the date of the D-Day landings in June 1944, emanated. The station is regarded as being particularly important because of its location on the western fringe of Europe. In 2012, the manual station was replaced by an AWS situated on the same site. Information taken from [Met Éireann](https://www.met.ie/climate/weather-observing-stations). The dataset contains a mix of manual data (1956-2011) and automatic data (>2012).
+Belmullet weather station (9 masl, 54°13‘39” N, 10°00’25’’ W) was opened in September 1956. It replaced the station at Blacksod Lighthouse, 10 miles to the SW, which was run by the Sweeney family. It was from Blacksod that the observation, which finally determined the date of the D-Day landings in June 1944, emanated. The station is regarded as being particularly important because of its location on the western fringe of Europe. In 2012, the manual station was replaced by an AWS (automatic weather station) situated on the same site. Information taken from [Met Éireann](https://www.met.ie/climate/weather-observing-stations). The dataset contains a mix of manual data (1956-2011) and automatic data (>2012) (several of features including `ww` were not measured after 2012 due to being coverted to an AWS).
 
 Due to its location on the western fringe of Europe it was picked for this reason to investigate wind energy. 
 
@@ -44,10 +44,11 @@ The columns of data are (retrieved from `data/KeyHourly.txt`);
 
 **Note:** While selected parameters could have being downloaded for a specific time period, the full hourly histroical dataset (to start of December 2024) was downloaded as below from the historical data web page from [Met Éireann](https://www.met.ie/climate/available-data/historical-data). Alternatively, daily or monthly could have being downloaded. 
 
-
 ![Met Éireann historical webpage portal](img/historical_data.png)
 
 Some papers were read in prepreparation for this project in terms of data analytics, such as these papers; [Murphy et al., 2023](https://www.sciencedirect.com/science/article/pii/S2212094723000610), [Kang and Reiner, 2022](https://www.sciencedirect.com/science/article/pii/S014098832200189X), and [Mateus et al., 2020](https://rmets.onlinelibrary.wiley.com/doi/10.1002/gdj3.92).
+
+It was found after the project was mostly finished that the reasons for this whitespace from 2012 onwards at this weather station was that it was converted to an AWS in 2012 (automatic weather station) and these categorical features (including `ww` and `w`) contained whitespace as not measured. This dataset contains a mix of manual (pre July 2012) and automatic (post Aug 2012) recording hence why whitespace recorded for these now non-measured features. On reflection, it may have being better to drop these features (including `ww` an `w`) since they were not used and used the full numerical dataset, especially for the ARIMA modelling.  
 
 ## **Development and Environment**
 Both the tasks and projected were completed in [`Visual Studio Code`](https://code.visualstudio.com/) using python (V3.11) though [`Anaconda`](https://www.anaconda.com/). [ChatGPT](https://chatgpt.com/) was used to assist with writing the workflow file for the project. No additional python modules needed as this was done using modules available within Anaconda, however the `requirements.txt` file shows the python modules used as part of this assessment.
@@ -88,8 +89,7 @@ This repository has the below structure. `project` is a subdirectory of `PFDA`.
 ├── /data/           
 │   ├── /workflows/             # contains extracted data files 
 ├── /img/                       # data files generated in weather.ipynb
-│   ├── /XX/                    # plots generated in project.ipynb
-│   └── /XX/                    # weather files generated in project.ipynb
+│   ├── .png                    # multiple .png files used in this project
 ├── /python_scripts/            # directory of python scripts
 │   ├── project_functions.py    # Main python file for functions used     
 │   ├── data_processing.py      # python script with data processing classes 
